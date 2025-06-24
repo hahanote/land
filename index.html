@@ -4,28 +4,42 @@
   <meta charset="UTF-8">
   <title>앱 실행 중...</title>
   <script>
+    let isHidden = false;
+
+    // 페이지가 백그라운드로 가는 것을 감지
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) {
+        isHidden = true;
+      }
+    });
+
+    window.addEventListener("pagehide", function () {
+      isHidden = true;
+    });
+
     function openApp() {
       const now = Date.now();
 
-      // ① 앱 실행 시도
-      window.location.href = "market09view://market09/home"; // ← 앱에서 등록한 딥링크
+      // 앱 실행 시도
+      window.location.href = "market09view://market09/home";
 
-      // ② 앱이 없으면 앱스토어 이동
+      // fallback
       setTimeout(function () {
         const elapsed = Date.now() - now;
-        if (elapsed < 1500) {
+
+        // 앱이 정상적으로 실행되어 백그라운드로 가면 isHidden이 true가 됨
+        if (!isHidden && elapsed < 3000) {
           const ua = navigator.userAgent;
 
           if (/android/i.test(ua)) {
             window.location.href = "https://play.google.com/store/apps/details?id=com.jasonmg.market09";
           } else if (/iphone|ipad|ipod/i.test(ua)) {
             window.location.href = "https://apps.apple.com/kr/app/id1319138671";
-            // https://apps.apple.com/kr/app/%EA%B3%B5%EA%B5%AC%EB%A7%88%EC%BC%93/id1319138671
           } else {
             alert("이 기기는 앱을 지원하지 않습니다.");
           }
         }
-      }, 1000);
+      }, 1200); // 타이밍은 1000~1500ms 사이 권장
     }
   </script>
 </head>
@@ -33,4 +47,3 @@
   <p>앱을 여는 중입니다...</p>
 </body>
 </html>
-
