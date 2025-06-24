@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>앱 실행 중...</title>
+  <script>
+    function openApp() {
+      const now = Date.now();
+
+      // ① 앱 실행 시도
+      window.location.href = "market09view://market09/home"; // ← 앱에서 등록한 딥링크
+
+      // ② 앱이 없으면 앱스토어 이동
+      setTimeout(function () {
+        const elapsed = Date.now() - now;
+        if (elapsed < 1500) {
+          const ua = navigator.userAgent;
+
+          if (/android/i.test(ua)) {
+            window.location.href = "https://play.google.com/store/apps/details?id=com.jasonmg.market09";
+          } else if (/iphone|ipad|ipod/i.test(ua)) {
+            window.location.href = "https://apps.apple.com/kr/app/id1319138671";
+            // https://apps.apple.com/kr/app/%EA%B3%B5%EA%B5%AC%EB%A7%88%EC%BC%93/id1319138671
+          } else {
+            alert("이 기기는 앱을 지원하지 않습니다.");
+          }
+        }
+      }, 1000);
+    }
+  </script>
+</head>
+<body onload="openApp()">
+  <p>앱을 여는 중입니다...</p>
+</body>
+</html>
+
