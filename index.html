@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>앱 실행 중...</title>
   <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id") || "default";
     let isHidden = false;
 
     // 페이지가 백그라운드로 가는 것을 감지
@@ -21,7 +23,7 @@
       const now = Date.now();
 
       // 앱 실행 시도
-      window.location.href = "zerowaste://detail?id=12345";
+      window.location.href = "zerowaste://detail?id=${id}";
 
       // fallback
       setTimeout(function () {
