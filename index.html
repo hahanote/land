@@ -8,7 +8,6 @@
     const id = params.get("id") || "default";
     let isHidden = false;
 
-    // 페이지가 백그라운드로 가는 것을 감지
     document.addEventListener("visibilitychange", function () {
       if (document.hidden) {
         isHidden = true;
@@ -30,7 +29,7 @@
         const elapsed = Date.now() - now;
 
         // 앱이 정상적으로 실행되어 백그라운드로 가면 isHidden이 true가 됨
-        if (!isHidden && elapsed < 5000) {
+        if (!isHidden && elapsed < 3000) {
           const ua = navigator.userAgent;
 
           if (/android/i.test(ua)) {
@@ -41,7 +40,7 @@
             alert("이 기기는 앱을 지원하지 않습니다.");
           }
         }
-      }, 1200); // 타이밍은 1000~1500ms 사이 권장
+      }, 3000);
     }
   </script>
 </head>
