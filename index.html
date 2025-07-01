@@ -32,7 +32,7 @@
         const elapsed = Date.now() - now;
 
         // 앱이 정상적으로 실행되어 백그라운드로 가면 isHidden이 true가 됨
-        if (!isHidden && elapsed < 4000) {
+        if (!isHidden && elapsed < 2500) {
           const ua = navigator.userAgent;
 
           if (/android/i.test(ua)) {
@@ -43,7 +43,7 @@
             alert("이 기기는 앱을 지원하지 않습니다.");
           }
         }
-      }, 3000);
+      }, 1500);
     }
   </script>
 </head>
