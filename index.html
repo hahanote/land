@@ -21,8 +21,11 @@
     function openApp() {
       const now = Date.now();
 
-      // 앱 실행 시도
-      window.location.href = `zerowaste://detail?id=${id}`;
+      // 앱 실행 시도 - iframe 방식
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = `zerowaste://detail?id=${id}`;
+      document.body.appendChild(iframe);
 
       // fallback
       setTimeout(function () {
