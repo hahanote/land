@@ -29,18 +29,18 @@
         const elapsed = Date.now() - now;
 
         // 앱이 정상적으로 실행되어 백그라운드로 가면 isHidden이 true가 됨
-        if (!isHidden && elapsed < 3000) {
+        if (!isHidden && elapsed > 5000) {
           const ua = navigator.userAgent;
 
-          // if (/android/i.test(ua)) {
-          //   window.location.href = "https://play.google.com/store/apps/details?id=com.jasonmg.market09";
-          // } else if (/iphone|ipad|ipod/i.test(ua)) {
-          //   window.location.href = "https://apps.apple.com/kr/app/id1319138671";
-          // } else {
-          //   alert("이 기기는 앱을 지원하지 않습니다.");
-          // }
+          if (/android/i.test(ua)) {
+            window.location.href = "https://play.google.com/store/apps/details?id=com.jasonmg.market09";
+          } else if (/iphone|ipad|ipod/i.test(ua)) {
+            window.location.href = "https://apps.apple.com/kr/app/id1319138671";
+          } else {
+            alert("이 기기는 앱을 지원하지 않습니다.");
+          }
         }
-      }, 1500);
+      }, 3000);
     }
   </script>
 </head>
