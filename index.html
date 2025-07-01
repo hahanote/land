@@ -32,7 +32,7 @@
         const elapsed = Date.now() - now;
 
         // 앱이 정상적으로 실행되어 백그라운드로 가면 isHidden이 true가 됨
-        if (!isHidden && elapsed > 5000) {
+        if (!isHidden && elapsed < 4000) {
           const ua = navigator.userAgent;
 
           if (/android/i.test(ua)) {
